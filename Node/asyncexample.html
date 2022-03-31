@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Async await example</title>
+  </head>
+  <body>
+    <script>
+      function generateRandomNo() {
+        let promiseOb = new Promise(function (reslove, reject) {
+          setTimeout(() => {
+            let randomNo = Math.round(Math.random() * 10);
+            console.log(randomNo);
+            reslove(randomNo);
+          }, 4000);
+        });
+        return promiseOb;
+      }
+      async function doAsyncJob() {
+        try {
+          let randomNo = await generateRandomNo();
+          console.log("ran this code immediately");
+          alert(randomNo);
+        } catch (error) {
+          alert(error);
+        }
+      }
+      doAsyncJob();
+    </script>
+  </body>
+</html>
